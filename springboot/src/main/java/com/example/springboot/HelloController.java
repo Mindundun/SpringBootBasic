@@ -3,6 +3,8 @@ package com.example.springboot;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RequestParam;
+
 
 @Controller
 public class HelloController {
@@ -18,5 +20,12 @@ public class HelloController {
     public String hello() {
         return "Hello World!!";
     }
+
+    @GetMapping("/jump")
+    @ResponseBody
+    public String junp(){
+        return "Jump to Spring Boot!";
+    }
+    
 
 }
