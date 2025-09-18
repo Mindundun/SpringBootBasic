@@ -22,7 +22,7 @@ public class Answer {
     @Column(columnDefinition = "TEXT")
     private String content;
 
-    private LocalDateTime createDAte;
+    private LocalDateTime createDate;
 
     @ManyToOne //질문(1) : 답변(N) -> 외래키
     private Question question;
