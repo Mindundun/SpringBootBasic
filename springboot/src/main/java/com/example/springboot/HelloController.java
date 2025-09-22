@@ -11,7 +11,7 @@ public class HelloController {
     @GetMapping("/")
     @ResponseBody
     public String root() {
-        return "Welcome to Spring Boot!#";
+        return "Welcome to Spring Boot!#@";
     }
 
     @GetMapping("/hello")
