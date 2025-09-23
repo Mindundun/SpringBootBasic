@@ -9,9 +9,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 public class HelloController {
 
     @GetMapping("/")
-    @ResponseBody
     public String root() {
-        return "Welcome to Spring Boot!#@";
+        return "redirect:/question/list";
     }
 
     @GetMapping("/hello")
