@@ -1,0 +1,9 @@
+textarea {
+    /* 텍스트 창의 넓이를 설정 */
+    width: 100%;
+}
+
+input[type=submit] {
+    /* 버튼 상단의 마진을 설정 */
+    margin-top: 10px;
+}
