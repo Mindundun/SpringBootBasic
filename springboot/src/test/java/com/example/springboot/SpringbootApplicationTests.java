@@ -17,6 +17,7 @@ import com.example.answer.Answer;
 import com.example.answer.AnswerRepository;
 import com.example.question.Question;
 import com.example.question.QuestionRepository;
+import com.example.question.QuestionService;
 
 import jakarta.transaction.Transactional;
 
@@ -27,6 +28,9 @@ class SpringbootApplicationTests {
 
 	@Autowired
 	private AnswerRepository answerRepository;
+	
+	@Autowired
+	private QuestionService questionService;
 
 	@Transactional
 	@Test
