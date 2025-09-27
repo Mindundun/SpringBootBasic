@@ -121,4 +121,13 @@ class SpringbootApplicationTests {
 
 	}
 
+	// @Test
+	// void testPage(){
+	// 	// 페이징 처리를 위한 데이터 대량 생산
+	// 	for(int i = 1; i<= 300; i ++){
+	// 		String subject = String.format("test data : [%03d]", i);
+	// 		String content = "none";
+	// 		this.questionService.create(subject, content);
+	// 	}
+	// }
 }
