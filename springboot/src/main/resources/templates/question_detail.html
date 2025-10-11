@@ -60,4 +60,20 @@
         <input type="submit" value="답변 등록" class="btn btn-primary my-2"/>
     </form>
 </div>
+<script layout:fragment="script" type="text/javascript">
+
+    console.log("✅ delete.js 실행됨");
+    const delete_elements = document.getElementsByClassName("delete");
+    console.log("찾은 delete 버튼 개수:", delete_elements.length);
+
+    Array.from(delete_elements).forEach(function(element){
+        element.addEventListener('click', function(){
+            console.log("🖱 클릭 이벤트 감지됨");
+            if(confirm("정말로 삭제하시겠습니까?")){
+                console.log("✅ 삭제 확정, 이동:", this.dataset.uri);
+                location.href = this.dataset.uri;
+            }
+        });
+    });
+</script>
 </html>

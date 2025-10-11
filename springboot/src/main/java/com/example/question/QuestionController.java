@@ -1,6 +1,8 @@
 package com.example.question;
 
 import java.security.Principal;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
@@ -14,6 +16,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.server.ResponseStatusException;
 
 import com.example.answer.AnswerForm;
@@ -31,6 +34,9 @@ public class QuestionController{
     
     private final QuestionService questionService;
     private final UserService userService;
+
+    private static final Logger logger = LoggerFactory.getLogger(QuestionController.class);
+
 
     @GetMapping("/list")
     // @ResponseBody
@@ -91,5 +97,25 @@ public class QuestionController{
         return String.format("redirect:/question/detail/%s", id);
 
     }
+
+    @PreAuthorize("isAuthenticated()")
+    @GetMapping("/delete/{id}")
+    public String questionDelete(Principal principal, @PathVariable("id") Integer id){
+        logger.info("questionDelete 호출됨 - id: {}, user: {}", id, principal.getName());
+        Question question = this.questionService.getQuestion(id);
+        if(!question.getAuthor().getUsername().equals(principal.getName())){
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "삭제 권한이 없습니다.");
+        }
+        this.questionService.delete(question);
+        return "redirect:/";
+    }
+
+    @GetMapping("/testLog")
+    @ResponseBody
+    public String testLog() {
+        logger.info("testLog 호출됨");
+        return "ok";
+    }
+
 
 }
