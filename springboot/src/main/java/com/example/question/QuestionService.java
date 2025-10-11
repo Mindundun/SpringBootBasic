@@ -79,6 +79,8 @@ public class QuestionService {
         Pageable pageable = PageRequest.of(page,10, Sort.by(sorts));
         Specification<Question> spec = search(kw);
         return this.questionRepository.findAll(spec, pageable);
+        // QuestionRepository의 @Query를 사용하고자.
+        // return this.questionRepository.findAllByKeyword(kw, pageable);
     }
 
     // 수정하기
