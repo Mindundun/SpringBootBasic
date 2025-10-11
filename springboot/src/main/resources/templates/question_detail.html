@@ -44,6 +44,12 @@
                         <div th:text="${#temporals.format(answer.createDate,'yyyy-MM-dd HH:mm')}"></div>
                     </div>
                 </div>
+                <div class="my-3">
+                    <a th:href="@{|/answer/modify/${answer.id}|}" class="btn btn-sm btn-outline-secondary"
+                        sec:authorize="isAuthenticated()"
+                        th:if="${answer.author != null and #authentication.getPrincipal().getUsername() == answer.author.username}"
+                        th:text="수정"></a>
+                </div>
             </div>
         </div>
     </div>
@@ -61,16 +67,10 @@
     </form>
 </div>
 <script layout:fragment="script" type="text/javascript">
-
-    console.log("✅ delete.js 실행됨");
     const delete_elements = document.getElementsByClassName("delete");
-    console.log("찾은 delete 버튼 개수:", delete_elements.length);
-
     Array.from(delete_elements).forEach(function(element){
         element.addEventListener('click', function(){
-            console.log("🖱 클릭 이벤트 감지됨");
             if(confirm("정말로 삭제하시겠습니까?")){
-                console.log("✅ 삭제 확정, 이동:", this.dataset.uri);
                 location.href = this.dataset.uri;
             }
         });
